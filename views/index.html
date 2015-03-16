@@ -6,11 +6,13 @@
   <link rel="stylesheet" href="/vendor/c3/c3.css" />
 </head>
 <body>
-<h1>{{ title }}</h1>
-<div class="js-chart">
+{{#dashboardAndData.modules}}
+<h2>{{ moduleConfig.title }}</h2>
+<div class="js-chart-{{ index }}">
 </div>
+{{/dashboardAndData.modules}}
 <script>
-  var module = {{{ module }}};
+  var dashboardAndData = {{{ escapedData }}};
 </script>
 <script src="/vendor/requirejs/require.js" data-main="/assets/js/client/main"></script>
 </body>

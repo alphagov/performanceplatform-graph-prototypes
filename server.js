@@ -1,6 +1,7 @@
 var express = require('express'),
   app = express(),
-  data = require('./assets/js/server/data');
+  data = require('./assets/js/server/data'),
+  _ = require('lodash');
 
 app.use('/assets', express.static('assets'));
 app.use('/vendor', express.static('node_modules'));
@@ -11,10 +12,15 @@ app.engine('html', require('hogan-express'));
 
 function index_html (req, res) {
   data.fetchData().then(function (dashboardAndData) {
-    var module = dashboardAndData.modules[3];
+    dashboardAndData.modules = _.reject(dashboardAndData.modules, function(module) {
+      return module.moduleConfig['module-type'] === 'grouped_timeseries';
+    });
+    _.each(dashboardAndData.modules, function(module, index) {
+      module.index = index;
+    });
     res.locals = {
-      title: module.title,
-      module: JSON.stringify(module)
+      dashboardAndData: dashboardAndData,
+      escapedData: JSON.stringify(dashboardAndData)
     };
     res.render('index');
   });

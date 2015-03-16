@@ -9,23 +9,30 @@ requirejs.config({
 });
 
 define(['d3', 'c3', 'lodash', 'moment'], function (d3, c3, _, moment) {
-  var chart;
-  chart = c3.generate(_.extend({
-    bindto: '.js-chart'
-  }, transformForC3(module)));
+  _.each(dashboardAndData.modules, function(module) {
+
+    c3.generate(_.extend({
+      bindto: '.js-chart-' + module.index
+    }, transformForC3(module)));
+  });
 });
 
 function transformForC3 (module) {
-  var x = ['_id'],
-    y = ['Unique visitors'];
+  var x = [],
+    y = [],
+    xKey = (typeof module.axes.x.key === 'string') ? module.axes.x.key : module.axes.x.key[0],
+    yKey = module.axes.y[0].key;
+
+  x.push(xKey);
+  y.push(yKey);
   _.each(module.dataSource.data, function(datum) {
-    x.push(new Date(datum._id));
-    y.push(datum.unique_visitors);
+    x.push(new Date(datum[xKey]));
+    y.push(datum[yKey]);
   });
 
   return {
     data: {
-      x: '_id',
+      x: xKey,
       columns: [
         x,
         y
@@ -36,7 +43,7 @@ function transformForC3 (module) {
         type: 'timeseries',
         tick: {
           format: function (x) {
-            return moment(x).format('ddd h:mm');
+            return moment(x).format('YYYY-MM-DD - h:mm');
           }
         }
       }
