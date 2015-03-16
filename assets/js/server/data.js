@@ -4,8 +4,8 @@ var _ = require('lodash'),
   Delta = require('performanceplatform-client.js').Delta;
 
 module.exports = {
-  fetchData: function () {
-    var dashboard = new Dashboard('carers-allowance');
+  fetchData: function (slug) {
+    var dashboard = new Dashboard(slug);
     return dashboard.resolve();
   }
 };

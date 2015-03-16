@@ -10,8 +10,8 @@ app.set('view engine', 'html');
 app.enable('view cache');
 app.engine('html', require('hogan-express'));
 
-function index_html (req, res) {
-  data.fetchData().then(function (dashboardAndData) {
+function routeHandler (req, res) {
+  data.fetchData(req.params.slug).then(function (dashboardAndData) {
     dashboardAndData.modules = _.reject(dashboardAndData.modules, function(module) {
       return module.moduleConfig['module-type'] === 'grouped_timeseries';
     });
@@ -26,7 +26,6 @@ function index_html (req, res) {
   });
 }
 
-app.get('/', index_html);
-app.get('/index.html', index_html);
+app.get('/:slug', routeHandler);
 
 app.listen(4000);
