@@ -12,12 +12,6 @@ app.engine('html', require('hogan-express'));
 
 function routeHandler (req, res) {
   data.fetchData(req.params.slug).then(function (dashboardAndData) {
-    dashboardAndData.modules = _.reject(dashboardAndData.modules, function(module) {
-      return module.moduleConfig['module-type'] === 'grouped_timeseries';
-    });
-    _.each(dashboardAndData.modules, function(module, index) {
-      module.index = index;
-    });
     res.locals = {
       dashboardAndData: dashboardAndData,
       escapedData: JSON.stringify(dashboardAndData)

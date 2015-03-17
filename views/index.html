@@ -8,7 +8,7 @@
 <body>
 <h1>{{ dashboardAndData.title }}</h1>
 {{#dashboardAndData.modules}}
-<h2>{{ moduleConfig.title }}</h2>
+<h2 class="js-chart-heading-{{ index }}">{{ moduleConfig.title }}</h2>
 <div class="js-chart-{{ index }}">
 </div>
 {{/dashboardAndData.modules}}
