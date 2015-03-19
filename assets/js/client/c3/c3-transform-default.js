@@ -29,6 +29,19 @@ define([], function() {
               return moment(x).format('YYYY-MM-DD - h:mm');
             }
           }
+        },
+        y: {
+          tick: {
+            format: function (y) {
+              var f = parseFloat(y),
+                i = parseInt(y);
+              if (!isNaN(f) && (f !== i)) {
+                return y.toFixed(1);
+              } else {
+                return y;
+              }
+            }
+          }
         }
       }
     };
