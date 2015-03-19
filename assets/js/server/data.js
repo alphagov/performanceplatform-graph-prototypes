@@ -13,8 +13,10 @@ module.exports = {
         if (module.moduleConfig['module-type'] === 'grouped_timeseries') {
           dashboardAndData.modules[index] = _.extend(new Table(module), {index: index});
         } else if (module.moduleConfig['module-type'] === 'kpi') {
-          module.isKPI = true;
-          dashboardAndData.modules[index] = _.extend(new Delta(module), {index: index});
+          dashboardAndData.modules[index] = _.extend(new Delta(module), {
+            index: index,
+            isKPI: true
+          });
         } else {
           module.index = index;
         }
