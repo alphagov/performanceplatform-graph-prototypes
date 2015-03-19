@@ -1,0 +1,23 @@
+.module-inner {
+    width: 100%;
+    height: 0;
+    padding-bottom: 50%;
+    position: relative;
+    margin-bottom: 50px;
+}
+.module {
+    clear: left;
+}
+.module-kpi {
+    clear: none;
+    width: 30%;
+    float: left;
+    padding: 0;
+}
+.module-inner > svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}

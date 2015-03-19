@@ -6,28 +6,18 @@
   {{#useC3}}
   <link rel="stylesheet" href="/vendor/c3/c3.css" />
   {{/useC3}}
-  <style>
-    .chart-container {
-      width: 100%;
-      height: 0;
-      padding-bottom: 50%;
-      position: relative;
-      margin-bottom: 50px;
-    }
-    .chart-container > svg {
-      position: absolute;
-      top: 0;
-      left: 0;
-      bottom: 0;
-      right: 0;
-    }
-  </style>
+  <link rel="stylesheet" href="/assets/css/main.css" />
 </head>
 <body>
 <h1>{{ dashboardAndData.title }}</h1>
 {{#dashboardAndData.modules}}
-<h2 class="js-chart-heading-{{ index }}">{{ moduleConfig.title }}</h2>
-<div class="chart-container js-chart-{{ index }}">
+<div class="module module-{{ moduleConfig.module-type }}  js-module-{{ index }}">
+<h2 class="js-module-heading">{{ moduleConfig.title }}</h2>
+<div class="module-inner js-module-inner">
+  {{#isKPI}}
+    {{}}
+  {{/isKPI}}
+</div>
 </div>
 {{/dashboardAndData.modules}}
 <script>

@@ -1,6 +1,7 @@
 var _ = require('lodash'),
   Dashboard = require('performanceplatform-client.js').Dashboard,
-  Table = require('performanceplatform-client.js').Table;
+  Table = require('performanceplatform-client.js').Table,
+  Delta = require('performanceplatform-client.js').Delta;
 
 module.exports = {
   fetchData: function (slug) {
@@ -11,6 +12,9 @@ module.exports = {
         var moduleTable;
         if (module.moduleConfig['module-type'] === 'grouped_timeseries') {
           dashboardAndData.modules[index] = _.extend(new Table(module), {index: index});
+        } else if (module.moduleConfig['module-type'] === 'kpi') {
+          module.isKPI = true;
+          dashboardAndData.modules[index] = _.extend(new Delta(module), {index: index});
         } else {
           module.index = index;
         }

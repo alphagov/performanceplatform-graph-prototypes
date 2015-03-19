@@ -13,8 +13,8 @@ requirejs.config({
 });
 
 define(['d3', 'c3', 'lodash', 'moment', 'c3Transforms', 'jquery'], function (d3, c3, _, moment, c3Transforms, $) {
-  _.each(dashboardAndData.modules, function(module) {
-    var el = document.querySelector('.js-chart-' + module.index);
+
+  function renderGraph(module, el) {
     try {
       c3.generate(_.extend({
         bindto: el,
@@ -24,9 +24,20 @@ define(['d3', 'c3', 'lodash', 'moment', 'c3Transforms', 'jquery'], function (d3,
         }
       }, c3Transforms(module)));
     } catch (err) {
-      document.querySelector('.js-chart-heading-' + module.index).setAttribute('style', 'color: red');
+      document.querySelector('.js-module-' + module.index + ' .js-module-heading').setAttribute('style', 'color: red');
       console.error(err);
     }
+  }
+  _.each(dashboardAndData.modules, function(module) {
+    var outer = document.querySelector('.js-module-' + module.index),
+      inner = outer.querySelector('.js-module-inner');
+
+    if ($(outer).hasClass('module-kpi')) {
+
+    } else {
+      renderGraph(module, inner);
+    }
+
   });
 });
 
