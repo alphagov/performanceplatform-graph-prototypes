@@ -11,6 +11,9 @@ define(['c3TransformDefault', 'c3TransformGrouped', 'lodash'], function(c3Transf
     return _.extend({
       point: {
         show: false
+      },
+      legend: {
+        position: 'right'
       }
     }, config);
   };
