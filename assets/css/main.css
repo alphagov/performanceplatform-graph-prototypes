@@ -31,6 +31,34 @@ body {
     font-family: "Helvetic Neue", Helvetica, Arial;
 }
 .big-number {
-    font-size: 4rem;
+    font-size: 3rem;
     font-weight: bold;
+}
+
+
+
+/**
+GRAPH
+*/
+
+.c3-axis-y .domain {
+    stroke: none;
+}
+
+.c3-axis-x .domain {
+    stroke: #cccccc;
+}
+
+.c3-tooltip {
+   box-shadow: none;
+}
+
+.c3-tooltip th {
+    background-color: white;
+    border-bottom: 1px solid gray;
+    color: black;
+}
+
+.c3-line {
+    stroke-width: 2px;
 }
