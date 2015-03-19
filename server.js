@@ -13,6 +13,9 @@ app.engine('html', require('hogan-express'));
 function routeHandler (req, res) {
   data.fetchData(req.params.slug).then(function (dashboardAndData) {
     res.locals = {
+      useC3: req.query.lib === 'c3',
+      useGoogleCharts: req.query.lib === 'gc',
+      useNVD3: req.query.lib === 'nvd3',
       dashboardAndData: dashboardAndData,
       escapedData: JSON.stringify(dashboardAndData)
     };
