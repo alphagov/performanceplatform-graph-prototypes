@@ -16,7 +16,7 @@ define(['d3', 'c3', 'lodash', 'moment', 'c3Transforms', 'jquery'], function (d3,
 
   function renderGraph(module, el) {
     try {
-      c3.generate(_.extend({
+      var chart = c3.generate(_.extend({
         bindto: el,
         size: {
           width: $(el).outerWidth(),
@@ -27,6 +27,15 @@ define(['d3', 'c3', 'lodash', 'moment', 'c3Transforms', 'jquery'], function (d3,
       document.querySelector('.js-module-' + module.index + ' .js-module-heading').setAttribute('style', 'color: red');
       console.error(err);
     }
+    $(window).on('resize', function() {
+      chart.resize({
+        width: $(el).outerWidth(),
+        height: $(el).outerHeight()
+      });
+    });
+    $(el).find('svg')
+      .attr('preserveAspectRatio', 'xMinYMin')
+      .attr('viewBox', '0 0 ' + $(el).outerWidth() + ' ' + $(el).outerHeight());
   }
   _.each(dashboardAndData.modules, function(module) {
     var outer = document.querySelector('.js-module-' + module.index),
