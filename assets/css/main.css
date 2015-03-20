@@ -77,3 +77,8 @@ GRAPH
 .annotation-negative text {
     fill: red;
 }
+
+.projected::before {
+    content: "Projected";
+    display: block;
+}

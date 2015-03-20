@@ -86,6 +86,11 @@ define(['lodash'], function(_) {
     if (_.contains(['single_timeseries', 'user_satisfaction_graph'], module.moduleConfig['module-type'])) {
       config.grid = averageLineConfig(yValues.slice(1));
     }
+      if (_.contains(['realtime'], module.moduleConfig['module-type'])) {
+          config.regions = [
+              {axis: 'x', start: "2015-03-20T16:05:09+00:00", class: 'projected'}
+          ];
+      }
     return config;
   };
 
