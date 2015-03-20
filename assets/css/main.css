@@ -1,19 +1,24 @@
+.wrapper {
+    margin: 0 auto;
+    width: 80%;
+}
+
 .module-inner {
     width: 100%;
     height: 0;
     padding-bottom: 40%;
     position: relative;
-    margin-bottom: 50px;
 }
 .module {
     clear: left;
-    width: 80%;
+    padding-bottom: 50px;
+    border-bottom: 1px solid darkgray;
+    margin-bottom: 50px;
 }
 .module-kpi {
     clear: none;
     width: 30%;
     float: left;
-    padding: 0;
 }
 .module-kpi .module-inner {
     padding: 0;
