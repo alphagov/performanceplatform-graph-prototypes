@@ -48,6 +48,15 @@ define(['lodash'], function(_) {
           yValues
         ]
       },
+    point: {
+        r: 0,
+      focus: {
+        expand: {
+          enabled: true,
+            r: 5
+        }
+      }
+    },
       axis: {
         x: {
           type: 'timeseries',
