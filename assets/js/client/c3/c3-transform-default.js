@@ -1,24 +1,43 @@
 define([], function() {
+
+  function calculateAverage (arr) {
+    var average = _.reduce(arr, function(memo, num) {
+        return memo + num;
+      }, 0) / (arr.length === 0 ? 1 : arr.length);
+    return average.toFixed(1);
+  }
+
+  function averageLineConfig (yValues) {
+    var average = calculateAverage(yValues);
+   return {
+      y: {
+        lines: [
+          {value: average, text: 'Average: ' + average}
+        ]
+      }
+    }
+  }
   return function (module) {
-    var x = [],
-      y = [],
+    var config,
+      xValues = [],
+      yValues = [],
       xKey = (typeof module.axes.x.key === 'string') ? module.axes.x.key : module.axes.x.key[0],
       yKey = module.axes.y[0].key;
 
-    x.push(xKey);
-    y.push(yKey);
+    xValues.push(xKey);
+    yValues.push(yKey);
     _.each(module.dataSource.data, function(datum) {
-      x.push(datum[xKey]);
-      y.push(datum[yKey]);
+      xValues.push(datum[xKey]);
+      yValues.push(datum[yKey]);
     });
 
-    return {
+    config = {
       data: {
         x: xKey,
         xFormat: '%Y-%m-%dT%H:%M:%S+00:00', //2014-02-24T00:00:00+00:00
         columns: [
-          x,
-          y
+          xValues,
+          yValues
         ]
       },
       axis: {
@@ -45,6 +64,11 @@ define([], function() {
         }
       }
     };
+
+    if (module.moduleConfig['module-type'] === 'single_timeseries') {
+      config.grid = averageLineConfig(yValues.slice(1));
+    }
+    return config;
   };
 
 });
