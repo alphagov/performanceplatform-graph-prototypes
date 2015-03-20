@@ -4,9 +4,9 @@
   <meta charset="UTF-8">
   <title></title>
   {{#useC3}}
-  <link rel="stylesheet" href="/vendor/c3/c3.css" />
+  <link rel="stylesheet" href="/performance/vendor/c3/c3.css" />
   {{/useC3}}
-  <link rel="stylesheet" href="/assets/css/main.css" />
+  <link rel="stylesheet" href="/performance/assets/css/main.css" />
 </head>
 <body>
 <h1>{{ dashboardAndData.title }}</h1>
@@ -23,20 +23,20 @@
 <script>
   var dashboardAndData = {{{ escapedData }}};
 </script>
-<script src="/vendor/requirejs/require.js" /></script>
+<script src="/performance/vendor/requirejs/require.js" /></script>
 
 {{#useGoogleCharts}}
 <script src='https://www.google.com/jsapi?autoload={"modules":[{"name":"visualization","version":"1","packages":["corechart"]}]}'></script>
 <script>
   google.setOnLoadCallback(function () {
-    require(["/assets/js/client/gc/main.js"]);
+    require(["/performance/assets/js/client/gc/main.js"]);
   });
 </script>
 {{/useGoogleCharts}}
 
 {{#useC3}}
 <script>
-  require(["/assets/js/client/c3/main.js"]);
+  require(["/performance/assets/js/client/c3/main.js"]);
 </script>
 {{/useC3}}
 

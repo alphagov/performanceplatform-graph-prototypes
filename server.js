@@ -3,8 +3,8 @@ var express = require('express'),
   data = require('./assets/js/server/data'),
   _ = require('lodash');
 
-app.use('/assets', express.static('assets'));
-app.use('/vendor', express.static('node_modules'));
+app.use('/performance/assets', express.static('assets'));
+app.use('/performance/vendor', express.static('node_modules'));
 
 app.set('view engine', 'html');
 app.enable('view cache');
@@ -23,6 +23,6 @@ function routeHandler (req, res) {
   });
 }
 
-app.get('/:slug', routeHandler);
+app.get('/performance/:slug', routeHandler);
 
-app.listen(process.env.PORT || 5000)
+app.listen(process.env.PORT || 5000);

@@ -16,8 +16,8 @@ node server
 
 Hit
 
-http://localhost:5000/<dashboard-slug>?lib=<graph-library>
+http://localhost:5000/performance/<dashboard-slug>?lib=<graph-library>
 
 eg. -
 
-http://localhost:5000/prison-visits?lib=c3
+http://localhost:5000/performance/prison-visits?lib=c3
