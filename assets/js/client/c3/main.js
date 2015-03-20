@@ -50,6 +50,7 @@ define(['d3', 'c3', 'lodash', 'moment', 'c3Transforms', 'jquery'], function (d3,
         });
     }
 
+    window.graphs = {};
   _.each(dashboardAndData.modules, function(module) {
     var outer = document.querySelector('.js-module-' + module.index),
       inner = outer.querySelector('.js-module-inner'),
@@ -59,6 +60,7 @@ define(['d3', 'c3', 'lodash', 'moment', 'c3Transforms', 'jquery'], function (d3,
       graph = renderGraph(module, inner);
       graphSize(inner);
         setupTypeSwitcher(graph, outer);
+        window.graphs[module.index] = graph;
     }
 
   });
