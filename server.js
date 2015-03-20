@@ -25,4 +25,4 @@ function routeHandler (req, res) {
 
 app.get('/:slug', routeHandler);
 
-app.listen(4000);
+app.listen(process.env.PORT || 5000)
