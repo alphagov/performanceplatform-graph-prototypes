@@ -43,13 +43,22 @@ define(['d3', 'c3', 'lodash', 'moment', 'c3Transforms', 'jquery'], function (d3,
       .attr('viewBox', '0 0 ' + $(el).outerWidth() + ' ' + $(el).outerHeight());
   }
 
+    function setupTypeSwitcher(graph, container) {
+        $(container).find('input[type="radio"]').on('change', function() {
+           var newType = $(this).val();
+            graph.transform(newType);
+        });
+    }
+
   _.each(dashboardAndData.modules, function(module) {
     var outer = document.querySelector('.js-module-' + module.index),
-      inner = outer.querySelector('.js-module-inner');
+      inner = outer.querySelector('.js-module-inner'),
+        graph;
 
     if (!$(outer).hasClass('module-kpi')) {
-      renderGraph(module, inner);
+      graph = renderGraph(module, inner);
       graphSize(inner);
+        setupTypeSwitcher(graph, outer);
     }
 
   });

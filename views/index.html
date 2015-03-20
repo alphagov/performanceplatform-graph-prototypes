@@ -9,10 +9,18 @@
   <link rel="stylesheet" href="/performance/assets/css/main.css" />
 </head>
 <body>
+<div class="wrapper">
 <h1>{{ dashboardAndData.title }}</h1>
 {{#dashboardAndData.modules}}
 <div class="module module-{{ moduleConfig.module-type }}  js-module-{{ index }}">
 <h2 class="js-module-heading">{{ moduleConfig.title }}</h2>
+    {{^isKPI}}
+    <div>
+    <label><input type="radio" name="type-{{ index }}" data-index="{{ index }}" value="line" checked /> Line</label>
+        <label><input type="radio" name="type-{{ index }}" data-index="{{ index }}" value="bar" /> Bar</label>
+        <label><input type="radio" name="type-{{ index }}" data-index="{{ index }}" value="area" /> Area</label>
+    </div>
+    {{/isKPI}}
 <div class="module-inner js-module-inner">
   {{#isKPI}}
     <div class="big-number">{{data.0.formatted_value}}</div>
@@ -20,6 +28,7 @@
 </div>
 </div>
 {{/dashboardAndData.modules}}
+</div>
 <script>
   var dashboardAndData = {{{ escapedData }}};
 </script>
