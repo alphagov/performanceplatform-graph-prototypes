@@ -46,7 +46,9 @@ body {
 /**
 GRAPH
 */
-
+.c3 svg {
+    font-size: 12px;
+}
 .c3-axis-y .domain {
     stroke: none;
 }
