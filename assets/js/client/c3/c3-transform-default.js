@@ -1,10 +1,18 @@
-define([], function() {
+define(['lodash'], function(_) {
 
   function calculateAverage (arr) {
-    var average = _.reduce(arr, function(memo, num) {
-        return memo + num;
-      }, 0) / (arr.length === 0 ? 1 : arr.length);
-    return average.toFixed(1);
+    var sum = 0,
+        count = 0;
+      _.each(arr, function(value) {
+          if (!_.contains([null, undefined], value)) {
+              sum += value;
+              count++;
+          }
+      });
+      if (count === 0) {
+          count = 1;
+      }
+    return (sum / count).toFixed(1);
   }
 
   function averageLineConfig (yValues) {
@@ -66,7 +74,7 @@ define([], function() {
       }
     };
 
-    if (module.moduleConfig['module-type'] === 'single_timeseries') {
+    if (_.contains(['single_timeseries', 'user_satisfaction_graph'], module.moduleConfig['module-type'])) {
       config.grid = averageLineConfig(yValues.slice(1));
     }
     return config;

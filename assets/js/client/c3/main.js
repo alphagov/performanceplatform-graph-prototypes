@@ -3,7 +3,7 @@ requirejs.config({
   paths: {
     c3: 'vendor/c3/c3',
     d3: 'vendor/d3/d3',
-    lodash: 'vendor/lodash/lodash',
+    lodash: 'vendor/lodash/index',
     moment: 'vendor/moment/moment',
     c3Transforms: 'assets/js/client/c3/c3-transforms',
     c3TransformDefault: 'assets/js/client/c3/c3-transform-default',
