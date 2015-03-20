@@ -12,7 +12,14 @@ define([], function() {
             count: 8
           }
         }
-      }
+      },
+        grid: {
+            x: {
+                lines: [
+                    {value: 40, text: 'Christmas period'}
+                ]
+            }
+        }
     };
   };
 
