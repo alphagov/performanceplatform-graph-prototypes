@@ -12,7 +12,7 @@
 <div class="wrapper">
 <h1>{{ dashboardAndData.title }}</h1>
 {{#dashboardAndData.modules}}
-<div class="module module-{{ moduleConfig.module-type }}  js-module-{{ index }}">
+<div id="module-{{ index }}" class="module module-{{ moduleConfig.module-type }}  js-module-{{ index }}">
 <h2 class="js-module-heading">{{ moduleConfig.title }}</h2>
     {{^isKPI}}
     <div>
