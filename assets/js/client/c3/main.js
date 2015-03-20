@@ -15,36 +15,41 @@ requirejs.config({
 define(['d3', 'c3', 'lodash', 'moment', 'c3Transforms', 'jquery'], function (d3, c3, _, moment, c3Transforms, $) {
 
   function renderGraph(module, el) {
+    var graph;
     try {
-      var chart = c3.generate(_.extend({
+      graph = c3.generate(_.extend({
         bindto: el,
         size: {
           width: $(el).outerWidth(),
           height: $(el).outerHeight()
+        },
+        onresize: function() {
+          graph.resize({
+            width: $(el).outerWidth(),
+            height: $(el).outerHeight()
+          });
         }
       }, c3Transforms(module)));
     } catch (err) {
       document.querySelector('.js-module-' + module.index + ' .js-module-heading').setAttribute('style', 'color: red');
       console.error(err);
     }
-    $(window).on('resize', function() {
-      chart.resize({
-        width: $(el).outerWidth(),
-        height: $(el).outerHeight()
-      });
-    });
+    return graph;
+  }
+
+  function graphSize(el) {
     $(el).find('svg')
       .attr('preserveAspectRatio', 'xMinYMin')
       .attr('viewBox', '0 0 ' + $(el).outerWidth() + ' ' + $(el).outerHeight());
   }
+
   _.each(dashboardAndData.modules, function(module) {
     var outer = document.querySelector('.js-module-' + module.index),
       inner = outer.querySelector('.js-module-inner');
 
-    if ($(outer).hasClass('module-kpi')) {
-
-    } else {
+    if (!$(outer).hasClass('module-kpi')) {
       renderGraph(module, inner);
+      graphSize(inner);
     }
 
   });
