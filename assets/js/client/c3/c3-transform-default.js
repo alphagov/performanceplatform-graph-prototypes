@@ -50,6 +50,7 @@ define([], function() {
           }
         },
         y: {
+            min: 0,
           tick: {
             format: function (y) {
               var f = parseFloat(y),
