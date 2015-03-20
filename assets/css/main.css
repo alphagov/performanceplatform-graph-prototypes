@@ -70,3 +70,10 @@ GRAPH
 .c3-line {
     stroke-width: 2px;
 }
+
+.annotation-positive text {
+    fill: green;
+}
+.annotation-negative text {
+    fill: red;
+}

@@ -16,7 +16,8 @@ define([], function() {
         grid: {
             x: {
                 lines: [
-                    {value: 40, text: 'Christmas period'}
+                    {value: 20, text: 'Publicity', class: 'annotation-positive'},
+                    {value: 40, text: 'Christmas period', class: 'annotation-negative'}
                 ]
             }
         }
