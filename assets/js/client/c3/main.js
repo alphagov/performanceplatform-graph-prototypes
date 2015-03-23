@@ -8,6 +8,7 @@ requirejs.config({
     c3Transforms: 'assets/js/client/c3/c3-transforms',
     c3TransformDefault: 'assets/js/client/c3/c3-transform-default',
     c3TransformGrouped: 'assets/js/client/c3/c3-transform-grouped',
+    regressionLine: 'assets/js/client/c3/regression-line',
     jquery: 'vendor/jquery/dist/jquery'
   }
 });

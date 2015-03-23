@@ -1,4 +1,4 @@
-define(['lodash'], function(_) {
+define(['lodash', 'regressionLine'], function(_, regressionLine) {
 
   function calculateAverage (arr) {
     var sum = 0,
@@ -83,14 +83,26 @@ define(['lodash'], function(_) {
       }
     };
 
-    if (_.contains(['single_timeseries', 'user_satisfaction_graph'], module.moduleConfig['module-type'])) {
-      config.grid = averageLineConfig(yValues.slice(1));
+    if (_.contains(['single_timeseries', 'user_satisfaction_graph', 'realtime'], module.moduleConfig['module-type'])) {
+      var newSeries,
+        newX,
+        newY;
+      newX = _.map(xValues.slice(1), function(datum) {
+        return moment(datum).valueOf();
+      });
+      newY = yValues.slice(1);
+
+      newY = _.map(newY, function(datum, index) {
+        if (!datum) {
+          datum = _.find(newY.slice(index), function(datum) { return datum; }) || parseFloat(calculateAverage(newY));
+        }
+        return datum;
+      });
+      newSeries = regressionLine(newX, newY)[1];
+      newSeries.unshift('Average');
+      config.data.columns.push(newSeries);
     }
-      if (_.contains(['realtime'], module.moduleConfig['module-type'])) {
-          config.regions = [
-              {axis: 'x', start: "2015-03-20T16:05:09+00:00", class: 'projected'}
-          ];
-      }
+
     return config;
   };
 
