@@ -5,7 +5,8 @@ requirejs.config({
     d3: 'vendor/d3/d3',
     lodash: 'vendor/lodash/index',
     moment: 'vendor/moment/moment',
-    jquery: 'vendor/jquery/dist/jquery'
+    jquery: 'vendor/jquery/dist/jquery',
+    nvd3Transforms: 'assets/js/client/nvd3/nvd3-transforms'
   },
   shim: {
     nvd3: {
@@ -15,7 +16,7 @@ requirejs.config({
   }
 });
 
-define(['d3', 'nvd3', 'lodash', 'moment', 'jquery'], function (d3, nv, _, moment, $) {
+define(['d3', 'nvd3', 'lodash', 'moment', 'jquery', 'nvd3Transforms'], function (d3, nv, _, moment, $, nvd3Transforms) {
 
   function renderGraph (module, el) {
     var graph;
@@ -29,18 +30,21 @@ define(['d3', 'nvd3', 'lodash', 'moment', 'jquery'], function (d3, nv, _, moment
           })
         ;
         // chart sub-models (ie. xAxis, yAxis, etc) when accessed directly, return themselves, not the parent chart, so need to chain separately
-        chart.xAxis
+        chart.xScale(d3.time.scale());
+        /*chart.xAxis
           .axisLabel("Time (s)")
           .tickFormat(d3.format(',.1f'))
 
           .staggerLabels(true)
-        ;
+        ;*/
+
         chart.yAxis
           .axisLabel('Voltage (v)')
           .tickFormat(d3.format(',.2f'))
         ;
+        var newData = nvd3Transforms(module);
         d3.select(el).append('svg')
-          .datum(module.dataSource.data)
+          .datum(newData)
           .call(chart);
         nv.utils.windowResize(chart.update);
         return chart;
@@ -68,7 +72,7 @@ define(['d3', 'nvd3', 'lodash', 'moment', 'jquery'], function (d3, nv, _, moment
       inner = outer.querySelector('.js-module-inner'),
       graph;
 
-    if (!$(outer).hasClass('module-kpi')) {
+    if (!$(outer).hasClass('module-kpi') && (module.moduleConfig['module-type'] !== 'grouped_timeseries')) {
       graph = renderGraph(module, inner);
       graphSize(inner);
       window.graphs[module.index] = graph;
