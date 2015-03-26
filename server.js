@@ -1,14 +1,15 @@
 var express = require('express'),
   app = express(),
   data = require('./assets/js/server/data'),
-  _ = require('lodash');
+  _ = require('lodash'),
+  hogan = require('hogan-express');
 
 app.use('/performance/assets', express.static('assets'));
 app.use('/performance/vendor', express.static('node_modules'));
 
 app.set('view engine', 'html');
 app.enable('view cache');
-app.engine('html', require('hogan-express'));
+app.engine('html', hogan);
 
 function routeHandler (req, res) {
   data.fetchData(req.params.slug).then(function (dashboardAndData) {
@@ -19,7 +20,11 @@ function routeHandler (req, res) {
       dashboardAndData: dashboardAndData,
       escapedData: JSON.stringify(dashboardAndData)
     };
-    res.render('index');
+    res.render('index', {
+      partials: {
+        module  : 'module.html'
+      }
+    });
   });
 }
 

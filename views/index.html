@@ -6,28 +6,19 @@
   {{#useC3}}
   <link rel="stylesheet" href="/performance/vendor/c3/c3.css" />
   {{/useC3}}
+  {{#useNVD3}}
+  <link rel="stylesheet" href="/performance/vendor/nvd3/nv.d3.css" />
+  {{/useNVD3}}
   <link rel="stylesheet" href="/performance/assets/css/main.css" />
 </head>
 <body>
 <div class="wrapper">
 <h1>{{ dashboardAndData.title }}</h1>
+
 {{#dashboardAndData.modules}}
-<div id="module-{{ index }}" class="module module-{{ moduleConfig.module-type }}  js-module-{{ index }}">
-<h2 class="js-module-heading">{{ moduleConfig.title }}</h2>
-    {{^isKPI}}
-    <div>
-    <label><input type="radio" name="type-{{ index }}" data-index="{{ index }}" value="line" checked /> Line</label>
-        <label><input type="radio" name="type-{{ index }}" data-index="{{ index }}" value="bar" /> Bar</label>
-        <label><input type="radio" name="type-{{ index }}" data-index="{{ index }}" value="area" /> Area</label>
-    </div>
-    {{/isKPI}}
-<div class="module-inner js-module-inner">
-  {{#isKPI}}
-    <div class="big-number">{{data.0.formatted_value}}</div>
-  {{/isKPI}}
-</div>
-</div>
+{{> module}}
 {{/dashboardAndData.modules}}
+
 </div>
 <script>
   var dashboardAndData = {{{ escapedData }}};
@@ -43,11 +34,14 @@
 </script>
 {{/useGoogleCharts}}
 
-{{#useC3}}
 <script>
+{{#useC3}}
   require(["/performance/assets/js/client/c3/main.js"]);
-</script>
 {{/useC3}}
+{{#useNVD3}}
+  require(["/performance/assets/js/client/nvd3/main.js"]);
+{{/useNVD3}}
+</script>
 
 </body>
 </html>
