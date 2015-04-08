@@ -1,5 +1,4 @@
 define(['lodash', 'regressionLine'], function(_, regressionLine) {
-
   function calculateAverage (arr) {
     var sum = 0,
         count = 0;
@@ -23,62 +22,37 @@ define(['lodash', 'regressionLine'], function(_, regressionLine) {
           {value: average, text: 'Average: ' + average}
         ]
       }
-    }
+    };
   }
+
   return function (module) {
-    var config,
-      xValues = [],
-      yValues = [],
-      xKey = (typeof module.axes.x.key === 'string') ? module.axes.x.key : module.axes.x.key[0],
-      yKey = module.axes.y[0].key;
-
-    xValues.push(xKey);
-    yValues.push(yKey);
-    _.each(module.dataSource.data, function(datum) {
-      xValues.push(datum[xKey]);
-      yValues.push(datum[yKey]);
-    });
-
+    var config;
     config = {
       data: {
-        x: xKey,
-        xFormat: '%Y-%m-%dT%H:%M:%S+00:00', //2014-02-24T00:00:00+00:00
-        columns: [
-          xValues,
-          yValues
-        ]
+        x: module.axes.x.label,
+        columns: module.table.data
       },
-    point: {
-        r: 0,
-      focus: {
-        expand: {
-          enabled: true,
-            r: 5
-        }
-      }
-    },
       axis: {
         x: {
-          type: 'timeseries',
+          type: 'category',
           tick: {
+            culling: {
+              max: 10
+            },
+            centered: true,
             format: function (x) {
-              return moment(x).format('YYYY-MM-DD - h:mm');
+              var dateCol = module.table.data[0];
+              return moment(dateCol[parseInt(x+1)]).format('D MMMM YYYY');
             }
           }
-        },
-        y: {
-            min: 0,
-          tick: {
-            format: function (y) {
-              var f = parseFloat(y),
-                i = parseInt(y);
-              if (!isNaN(f) && (f !== i)) {
-                return y.toFixed(1);
-              } else {
-                return y;
-              }
-            }
-          }
+        }
+      },
+      grid: {
+        x: {
+          lines: [
+              {value: 19, text: 'Publicity', class: 'annotation-positive'},
+              {value: 39, text: 'Christmas period', class: 'annotation-negative'}
+          ]
         }
       }
     };
@@ -87,14 +61,16 @@ define(['lodash', 'regressionLine'], function(_, regressionLine) {
       var newSeries,
         newX,
         newY;
-      newX = _.map(xValues.slice(1), function(datum) {
+      newX = _.map(module.table.data[0].slice(1), function(datum) {
         return moment(datum).valueOf();
       });
-      newY = yValues.slice(1);
+      newY = module.table.data[1].slice(1);
 
       newY = _.map(newY, function(datum, index) {
         if (!datum) {
-          datum = _.find(newY.slice(index), function(datum) { return datum; }) || parseFloat(calculateAverage(newY));
+          datum = _.find(newY.slice(index), function (datum) {
+            return datum;
+          }) || parseFloat(calculateAverage(newY));
         }
         return datum;
       });

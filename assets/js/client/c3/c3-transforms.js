@@ -1,10 +1,7 @@
-define(['c3TransformDefault', 'c3TransformGrouped', 'lodash'], function(c3TransformDefault, c3TransformGrouped, _) {
+define(['c3TransformDefault', 'lodash'], function(c3TransformDefault, _) {
   return function (module) {
     var config;
     switch (module.moduleConfig['module-type']) {
-      case 'grouped_timeseries':
-        config = c3TransformGrouped(module);
-        break;
       default:
         config = c3TransformDefault(module);
     }

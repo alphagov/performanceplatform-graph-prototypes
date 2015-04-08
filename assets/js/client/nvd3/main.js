@@ -72,7 +72,7 @@ define(['d3', 'nvd3', 'lodash', 'moment', 'jquery', 'nvd3Transforms'], function 
       inner = outer.querySelector('.js-module-inner'),
       graph;
 
-    if (!$(outer).hasClass('module-kpi') && (module.moduleConfig['module-type'] !== 'grouped_timeseries')) {
+    if (!$(outer).hasClass('module-kpi')) {
       graph = renderGraph(module, inner);
       graphSize(inner);
       window.graphs[module.index] = graph;

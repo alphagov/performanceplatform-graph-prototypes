@@ -7,7 +7,6 @@ requirejs.config({
     moment: 'vendor/moment/moment',
     c3Transforms: 'assets/js/client/c3/c3-transforms',
     c3TransformDefault: 'assets/js/client/c3/c3-transform-default',
-    c3TransformGrouped: 'assets/js/client/c3/c3-transform-grouped',
     regressionLine: 'assets/js/client/c3/regression-line',
     jquery: 'vendor/jquery/dist/jquery'
   }
@@ -44,14 +43,15 @@ define(['d3', 'c3', 'lodash', 'moment', 'c3Transforms', 'jquery'], function (d3,
       .attr('viewBox', '0 0 ' + $(el).outerWidth() + ' ' + $(el).outerHeight());
   }
 
-    function setupTypeSwitcher(graph, container) {
-        $(container).find('input[type="radio"]').on('change', function() {
-           var newType = $(this).val();
-            graph.transform(newType);
-        });
-    }
+  function setupTypeSwitcher(graph, container) {
+      $(container).find('input[type="radio"]').on('change', function() {
+         var newType = $(this).val();
+          graph.transform(newType);
+      });
+  }
 
-    window.graphs = {};
+  window.graphs = {};
+
   _.each(dashboardAndData.modules, function(module) {
     var outer = document.querySelector('.js-module-' + module.index),
       inner = outer.querySelector('.js-module-inner'),

@@ -12,22 +12,26 @@ app.enable('view cache');
 app.engine('html', hogan);
 
 function routeHandler (req, res) {
-  data.fetchData(req.params.slug).then(function (dashboardAndData) {
-    res.locals = {
-      useC3: req.query.lib === 'c3',
-      useGoogleCharts: req.query.lib === 'gc',
-      useNVD3: req.query.lib === 'nvd3',
-      dashboardAndData: dashboardAndData,
-      escapedData: JSON.stringify(dashboardAndData)
-    };
-    res.render('index', {
-      partials: {
-        module  : 'module.html'
-      }
+  data.fetchData(req.params.slug)
+    .then(function (dashboardAndData) {
+      res.locals = {
+        useC3: req.query.lib === 'c3',
+        useGoogleCharts: req.query.lib === 'gc',
+        useNVD3: req.query.lib === 'nvd3',
+        dashboardAndData: dashboardAndData,
+        escapedData: JSON.stringify(dashboardAndData)
+      };
+      res.render('index', {
+        partials: {
+          module  : 'module.html'
+        }
+      });
+    }, function (err) {
+      throw err;
     });
-  });
 }
 
 app.get('/performance/:slug', routeHandler);
 
 app.listen(process.env.PORT || 5000);
+console.log('Server listening on port 5000');
