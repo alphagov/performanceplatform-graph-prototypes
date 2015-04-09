@@ -64,6 +64,13 @@ define(['d3', 'c3', 'lodash', 'moment', 'c3Transforms', 'jquery'], function (d3,
         window.graphs[module.index] = graph;
     }
 
+    //fix tick issues
+    $(inner).find('.tick').each(function (index) {
+      if ($(this).find('text').is(':hidden')) {
+        $(this).find('line').hide();
+        $(this).find('text').css('width', 100);
+      }
+    });
+
   });
 });
-
