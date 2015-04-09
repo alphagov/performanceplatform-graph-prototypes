@@ -26,18 +26,9 @@ define(['d3', 'nvd3', 'lodash', 'moment', 'jquery', 'nvd3Transforms'], function 
         var chart = nv.models.lineChart()
           .options({
             transitionDuration: 300
-            //useInteractiveGuideline: true
-          })
-        ;
-        // chart sub-models (ie. xAxis, yAxis, etc) when accessed directly, return themselves, not the parent chart, so need to chain separately
+          });
+
         chart.xScale(d3.time.scale());
-        /*chart.xAxis
-          .axisLabel("Time (s)")
-          .tickFormat(d3.format(',.1f'))
-
-          .staggerLabels(true)
-        ;*/
-
         chart.yAxis
           .axisLabel('Voltage (v)')
           .tickFormat(d3.format(',.2f'))
@@ -50,8 +41,6 @@ define(['d3', 'nvd3', 'lodash', 'moment', 'jquery', 'nvd3Transforms'], function 
         return chart;
       });
 
-      //width: $(el).outerWidth(),
-      //  height: $(el).outerHeight()
     } catch (err) {
       document.querySelector('.js-module-' + module.index + ' .js-module-heading').setAttribute('style', 'color: red');
       console.error(err);
@@ -72,7 +61,8 @@ define(['d3', 'nvd3', 'lodash', 'moment', 'jquery', 'nvd3Transforms'], function 
       inner = outer.querySelector('.js-module-inner'),
       graph;
 
-    if (!$(outer).hasClass('module-kpi')) {
+    if (!$(outer).hasClass('module-kpi') &&
+      (module.moduleConfig['module-type'] !== 'grouped_timeseries')) {
       graph = renderGraph(module, inner);
       graphSize(inner);
       window.graphs[module.index] = graph;
