@@ -47,14 +47,6 @@ define(['lodash', 'regressionLine'], function(_, regressionLine) {
           }
         }
       },
-      grid: {
-        x: {
-          lines: [
-              {value: 19, text: 'Publicity', class: 'annotation-positive'},
-              {value: 39, text: 'Christmas period', class: 'annotation-negative'}
-          ]
-        }
-      }
     };
 
     if (_.contains(['single_timeseries', 'user_satisfaction_graph', 'realtime'], module.moduleConfig['module-type'])) {
