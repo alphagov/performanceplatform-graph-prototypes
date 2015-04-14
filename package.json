@@ -21,7 +21,7 @@
     "lodash": "3.5.0",
     "moment": "2.9.0",
     "nvd3": "1.1.15-beta2",
-    "performanceplatform-client.js": "git+https://github.com/alphagov/performanceplatform-client.js.git#46c7a623435b6113a83951c836b08a7fc179c62b",
+    "performanceplatform-client.js": "git+https://github.com/alphagov/performanceplatform-client.js.git#release_185",
     "q": "1.0.1",
     "requirejs": "2.1.14"
   },
