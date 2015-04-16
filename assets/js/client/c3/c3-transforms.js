@@ -20,7 +20,7 @@ define(['c3TransformDefault', 'lodash'], function(c3TransformDefault, _) {
       },
       color: {
         pattern: ['#097F96', '#112684', '#ffbb78', '#2ca02c', '#98df8a', '#d62728', '#ff9896', '#9467bd']
-      }
+      },
     }, config);
   };
 
