@@ -6,6 +6,7 @@ var _ = require('lodash'),
 module.exports = {
   fetchData: function (slug) {
     var dashboard = new Dashboard(slug);
+
     return dashboard.resolve().then(function(dashboardAndData) {
       _.each(dashboardAndData.modules, function(module, index) {
         var moduleTable;
@@ -14,36 +15,20 @@ module.exports = {
             index: index,
             isKPI: true
           });
+        } else {
+          //with the new graphs how should we visualise a user satisfaction graph?
+          if (module.moduleConfig['module-type'] === 'user_satisfaction_graph') {
+            module.axes.y = [module.axes.y[0]];
+          }
+          module.table = new Table(module, {formatDates: false});
         }
+        
         module.index = index;
-        module.table = new Table(module, {formatDates: false});
-        module.data = transposeArrays(_.cloneDeep(module.table.data));
+        
+        // module.table.data = module.table.render();
+        // module.data = transposeArrays(_.cloneDeep(module.table.data));
       });
       return dashboardAndData;
     });
   }
 };
-
-function transposeArrays (arrays) {
-  var newArrays = [],
-    colsArray = [];
-
-  _.each(arrays, function(series, rowIndex) {
-    var col = series.shift();
-    colsArray.push(col);
-    _.each(series, function(datum, index) {
-      if (newArrays.length <= index) {
-        newArrays.push([]);
-      }
-      if (newArrays[index].length <= rowIndex) {
-        newArrays[index].push([]);
-      }
-      if (datum === null) {
-        series[index] = 0;
-      }
-      newArrays[index][rowIndex] = datum;
-    });
-  });
-
-  return newArrays;
-}
