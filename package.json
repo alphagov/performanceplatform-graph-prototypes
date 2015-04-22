@@ -30,7 +30,7 @@
     "node-sass": "^2.1.1",
     "nodemon": "^1.3.7",
     "nvd3": "1.1.15-beta2",
-    "performanceplatform-client.js": "git+https://github.com/alphagov/performanceplatform-client.js.git#fe3eb5745da80820dc5dbbb78558883719684a57",
+    "performanceplatform-client.js": "git+https://github.com/alphagov/performanceplatform-client.js.git#release_191",
     "q": "1.0.1"
   },
   "devDependencies": {
