@@ -23,7 +23,21 @@ module.exports = function (module) {
   config = {
     data: {
       x: module.axes.x.label,
-      columns: module.table.data
+      columns: module.table.data,
+      groups : function(columns){
+        console.log('here');
+        var stackedTitles = [];
+        if (module.moduleConfig['module-type'] === 'realtime'){
+          module.table.data.forEach(function(yColumn) {
+            console.log('here');
+              stackedTitles.push(yColumn.slice(0,1));
+            });
+          return stackedTitles;
+        }
+        else {
+          return: false;
+        }
+      }
     },
     axis: {
       x: {
@@ -35,9 +49,8 @@ module.exports = function (module) {
           centered: true,
           format: function (x) {
             var dateCol = module.table.data[0];
-            //console.log(module.moduleConfig);
-            if (module.moduleConfig['title'] === 'Live service usage'){
-              /*moment().startOf('day').fromNow()*/
+            //changed to apply to realtime modules in general
+            if (module.moduleConfig['module-type'] === 'realtime'){
               return moment(dateCol[parseInt(x+1)]).format('h:mm a');
             }
             else {
@@ -50,10 +63,6 @@ module.exports = function (module) {
       y: {
         tick: {
           format: function (y) {
-            //console.log(y);
-            //if (module.table.data[1];){
-            //console.log(module.table.data[1].slice(0));
-            //}
             return formatter.format(y, module.axes.y[0].format);
           }
         },
