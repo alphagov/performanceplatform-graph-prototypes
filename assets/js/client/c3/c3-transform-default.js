@@ -20,24 +20,17 @@ function calculateAverage (arr) {
 
 module.exports = function (module) {
   var config;
+
+  var titles = _.map(module.table.data, function (col) {
+    return _.first(col);
+  });
+  console.log(titles);
+
   config = {
     data: {
       x: module.axes.x.label,
       columns: module.table.data,
-      groups : function(columns){
-        console.log('here');
-        var stackedTitles = [];
-        if (module.moduleConfig['module-type'] === 'realtime'){
-          module.table.data.forEach(function(yColumn) {
-            console.log('here');
-              stackedTitles.push(yColumn.slice(0,1));
-            });
-          return stackedTitles;
-        }
-        else {
-          return: false;
-        }
-      }
+      groups : [titles]
     },
     axis: {
       x: {
@@ -49,7 +42,6 @@ module.exports = function (module) {
           centered: true,
           format: function (x) {
             var dateCol = module.table.data[0];
-            //changed to apply to realtime modules in general
             if (module.moduleConfig['module-type'] === 'realtime'){
               return moment(dateCol[parseInt(x+1)]).format('h:mm a');
             }
