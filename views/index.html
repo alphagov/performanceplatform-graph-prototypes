@@ -6,9 +6,9 @@
   {{#useC3}}
   <link rel="stylesheet" href="/performance/vendor/c3/c3.css" />
   {{/useC3}}
-  <!-- {{#useNVD3}}
+  {{#useNVD3}}
   <link rel="stylesheet" href="/performance/vendor/nvd3/nv.d3.css" />
-  {{/useNVD3}} -->
+  {{/useNVD3}}
   <link rel="stylesheet" href="/performance/assets/css/main.css" />
 </head>
 <body>
@@ -33,14 +33,14 @@
 </script>
 {{/useGoogleCharts}} -->
 
-<script>
 
-// {{#useNVD3}}
-//   require(["/performance/assets/js/client/nvd3/main.js"]);
-// {{/useNVD3}}
-</script>
+{{#useNVD3}}
+  <script src="/performance/assets/js/client/nvd3/bundle.js"/></script>
+{{/useNVD3}}
 
-<script src="/performance/assets/js/client/c3/bundle.js" /></script>
+{{#useC3}}
+  <script src="/performance/assets/js/client/c3/bundle.js" /></script>
+{{/useC3}}
 
 </body>
 </html>

@@ -11,7 +11,7 @@
   "scripts": {
     "prewatch:css": "cp -r ./assets/sass/fonts ./assets/css/",
     "watch:css": "./node_modules/nodemon/bin/nodemon.js -e scss -x './node_modules/node-sass/bin/node-sass ./assets/sass/main.scss ./assets/css/main.css'",
-    "watch:js": "./node_modules/nodemon/bin/nodemon.js -e js -x './node_modules/browserify/bin/cmd.js assets/js/client/c3/main.js -o assets/js/client/c3/bundle.js' --ignore 'bundle.js'",
+    "watch:js": "./node_modules/nodemon/bin/nodemon.js -e js -x './node_modules/browserify/bin/cmd.js assets/js/client/c3/main.js -o assets/js/client/c3/bundle.js; ./node_modules/browserify/bin/cmd.js assets/js/client/nvd3/main.js -o assets/js/client/nvd3/bundle.js' --ignore 'bundle.js'",
     "start": "nodemon server.js"
   },
   "engines": {

@@ -22,11 +22,8 @@ module.exports = {
           }
           module.table = new Table(module, {formatDates: false});
         }
-        
+
         module.index = index;
-        
-        // module.table.data = module.table.render();
-        // module.data = transposeArrays(_.cloneDeep(module.table.data));
       });
       return dashboardAndData;
     });
