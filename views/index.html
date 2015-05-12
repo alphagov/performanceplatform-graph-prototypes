@@ -23,25 +23,24 @@
 <script>
   var dashboardAndData = {{{ escapedData }}};
 </script>
-<script src="/performance/vendor/requirejs/require.js" /></script>
 
-{{#useGoogleCharts}}
+<!-- {{#useGoogleCharts}}
 <script src='https://www.google.com/jsapi?autoload={"modules":[{"name":"visualization","version":"1","packages":["corechart"]}]}'></script>
 <script>
   google.setOnLoadCallback(function () {
     require(["/performance/assets/js/client/gc/main.js"]);
   });
 </script>
-{{/useGoogleCharts}}
+{{/useGoogleCharts}} -->
 
-<script>
-{{#useC3}}
-  require(["/performance/assets/js/client/c3/main.js"]);
-{{/useC3}}
+
 {{#useNVD3}}
-  require(["/performance/assets/js/client/nvd3/main.js"]);
+  <script src="/performance/assets/js/client/nvd3/bundle.js"/></script>
 {{/useNVD3}}
-</script>
+
+{{#useC3}}
+  <script src="/performance/assets/js/client/c3/bundle.js" /></script>
+{{/useC3}}
 
 </body>
 </html>

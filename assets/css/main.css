@@ -1,84 +1,117 @@
+@font-face {
+  font-family: GDS-Logo;
+  src: local("HelveticaNeue"), local("Helvetica Neue"), local("Arial"), local("Helvetica"); }
+
+@-ms-viewport {
+  width: device-width; }
+
+@-o-viewport {
+  width: device-width; }
+
+/* The below comment needs a ! so that the copyright message doesn't get removed during the minification step. See: http://sass-lang.com/docs/yardoc/file.SASS_REFERENCE.html#comments */
+/*! Copyright (c) 2011 by Margaret Calvert & Henrik Kubel. All rights reserved. The font has been customised for exclusive use on GOV.UK. This cut is not commercially available. */
+@font-face {
+  font-family: 'nta';
+  src: url('./fonts/NTA-Light-20130221.woff') format('woff');
+  font-weight: normal;
+  font-style: normal; }
+
+@font-face {
+  font-family: 'nta';
+  src: url('./fonts/NTA-Bold-20130221.woff') format('woff');
+  font-weight: bold; }
+
+@font-face {
+  font-family: 'ntatabularnumbers';
+  src: url('./fonts/NTATabularNumbers-Light.woff') format('woff');
+  font-weight: normal;
+  font-style: normal; }
+
+@font-face {
+  font-family: 'ntatabularnumbers';
+  src: url('./fonts/NTATabularNumbers-Bold.woff') format('woff');
+  font-weight: bold; }
+
+html {
+  font-family: "nta", Arial, sans-serif;
+  font-size: 24px;
+  line-height: 1.25;
+  font-weight: 700;
+  text-transform: none;
+  height: 100%; }
+  @media (max-width: 640px) {
+    html {
+      font-size: 18px;
+      line-height: 1.2; } }
+
 .wrapper {
-    margin: 0 auto;
-    width: 80%;
-}
+  margin: 0 auto;
+  width: 80%; }
 
 .module-inner {
-    width: 100%;
-    height: 0;
-    padding-bottom: 40%;
-    position: relative;
-}
+  width: 100%;
+  height: 0;
+  padding-bottom: 40%;
+  position: relative; }
+
 .module {
-    clear: left;
-    padding-bottom: 50px;
-    border-bottom: 1px solid darkgray;
-    margin-bottom: 50px;
-}
+  clear: left;
+  padding-bottom: 50px;
+  border-bottom: 1px solid darkgray;
+  margin-bottom: 50px; }
+
 .module-kpi {
-    clear: none;
-    width: 30%;
-    float: left;
-}
+  clear: none;
+  width: 30%;
+  float: left; }
+
 .module-kpi .module-inner {
-    padding: 0;
-    height: auto;
-}
+  padding: 0;
+  height: auto; }
+
 .module-inner > svg {
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-}
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0; }
 
 body {
-    font-size: 16px;
-    font-family: "Helvetic Neue", Helvetica, Arial;
-}
+  font-size: 16px; }
+
 .big-number {
-    font-size: 3rem;
-    font-weight: bold;
-}
-
-
+  font-size: 3rem;
+  font-weight: bold; }
 
 /**
 GRAPH
 */
 .c3 svg {
-    font-size: 12px;
-}
+  font-size: 12px; }
+
 .c3-axis-y .domain {
-    stroke: none;
-}
+  stroke: none; }
 
 .c3-axis-x .domain {
-    stroke: #cccccc;
-}
+  stroke: #cccccc; }
 
 .c3-tooltip {
-   box-shadow: none;
-}
+  box-shadow: none; }
 
 .c3-tooltip th {
-    background-color: white;
-    border-bottom: 1px solid gray;
-    color: black;
-}
+  background-color: white;
+  border-bottom: 1px solid gray;
+  color: black; }
 
 .c3-line {
-    stroke-width: 2px;
-}
+  stroke-width: 2px; }
 
 .annotation-positive text {
-    fill: green;
-}
+  fill: green; }
+
 .annotation-negative text {
-    fill: red;
-}
+  fill: red; }
 
 .projected::before {
-    content: "Projected";
-    display: block;
-}
+  content: "Projected";
+  display: block; }
