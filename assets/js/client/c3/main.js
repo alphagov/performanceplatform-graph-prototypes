@@ -1,9 +1,6 @@
-var d3 = require('d3');
 var c3 = require('c3');
 var _ = require('lodash');
-var moment = require('moment');
 var c3Transforms = require('./c3-transforms');
-var regressionLine = require('./regression-line');
 var $ = require('jquery');
 
 
