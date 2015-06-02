@@ -1,0 +1,517 @@
+/*!
+* CleanSlate
+*   github.com/premasagar/cleanslate
+*
+*//*
+    An extreme CSS reset stylesheet, for normalising the styling of a container element and its children.
+
+    by Premasagar Rose
+        dharmafly.com
+
+    license
+        opensource.org/licenses/mit-license.php
+
+    **
+
+    v0.9.3
+
+*/
+
+/* == BLANKET RESET RULES == */
+
+/* HTML 4.01 */
+.cleanslate, .cleanslate h1, .cleanslate h2, .cleanslate h3, .cleanslate h4, .cleanslate h5, .cleanslate h6, .cleanslate p, .cleanslate td, .cleanslate dl, .cleanslate tr, .cleanslate dt, .cleanslate ol, .cleanslate form, .cleanslate select, .cleanslate option, .cleanslate pre, .cleanslate div, .cleanslate table,  .cleanslate th, .cleanslate tbody, .cleanslate tfoot, .cleanslate caption, .cleanslate thead, .cleanslate ul, .cleanslate li, .cleanslate address, .cleanslate blockquote, .cleanslate dd, .cleanslate fieldset, .cleanslate li, .cleanslate iframe, .cleanslate strong, .cleanslate legend, .cleanslate em, .cleanslate s, .cleanslate cite, .cleanslate span, .cleanslate input, .cleanslate sup, .cleanslate label, .cleanslate dfn, .cleanslate object, .cleanslate big, .cleanslate q, .cleanslate font, .cleanslate samp, .cleanslate acronym, .cleanslate small, .cleanslate img, .cleanslate strike, .cleanslate code, .cleanslate sub, .cleanslate ins, .cleanslate textarea, .cleanslate var, .cleanslate a, .cleanslate abbr, .cleanslate applet, .cleanslate del, .cleanslate kbd, .cleanslate tt, .cleanslate b, .cleanslate i, .cleanslate hr,
+
+/* HTML5 */
+.cleanslate article, .cleanslate aside, .cleanslate dialog, .cleanslate figure, .cleanslate footer, .cleanslate header, .cleanslate hgroup, .cleanslate menu, .cleanslate nav, .cleanslate section, .cleanslate time, .cleanslate mark, .cleanslate audio, .cleanslate video {
+  background-attachment:scroll !important;
+  background-color:transparent !important;
+  background-image:none !important; /* This rule affects the use of pngfix JavaScript http://dillerdesign.com/experiment/DD_BelatedPNG for IE6, which is used to force the browser to recognise alpha-transparent PNGs files that replace the IE6 lack of PNG transparency. (The rule overrides the VML image that is used to replace the given CSS background-image). If you don't know what that means, then you probably haven't used the pngfix script, and this comment may be ignored :) */
+  background-position:0 0 !important;
+  background-repeat:repeat !important;
+  border-color:black !important;
+  border-color:currentColor !important; /* `border-color` should match font color. Modern browsers (incl. IE9) allow the use of "currentColor" to match the current font 'color' value <http://www.w3.org/TR/css3-color/#currentcolor>. For older browsers, a default of 'black' is given before this rule. Guideline to support older browsers: if you haven't already declared a border-color for an element, be sure to do so, e.g. when you first declare the border-width. */
+  border-radius:0 !important;
+  border-style:none !important;
+  border-width:medium !important;
+  box-sizing:content-box !important;
+  bottom:auto !important;
+  clear:none !important;
+  clip:auto !important;
+  color:inherit !important;
+  counter-increment:none !important;
+  counter-reset:none !important;
+  cursor:auto !important;
+  direction:inherit !important;
+  display:inline !important;
+  float:none !important;
+  font-family: inherit !important; /* As with other inherit values, this needs to be set on the root container element */
+  font-size: inherit !important;
+  font-style:inherit !important;
+  font-variant:normal !important;
+  font-weight:inherit !important;
+  height:auto !important;
+  left:auto !important;
+  letter-spacing:normal !important;
+  line-height:inherit !important;
+  list-style-type: inherit !important; /* Could set list-style-type to none */
+  list-style-position: outside !important;
+  list-style-image: none !important;
+  margin:0 !important;
+  max-height:none !important;
+  max-width:none !important;
+  min-height:0 !important;
+  min-width:0 !important;
+  opacity:1;
+  outline:invert none medium !important;
+  overflow:visible !important;
+  padding:0 !important;
+  position:static !important;
+  quotes: "" "" !important;
+  right:auto !important;
+  table-layout:auto !important;
+  text-align:inherit !important;
+  text-decoration:inherit !important;
+  text-indent:0 !important;
+  text-transform:none !important;
+  top:auto !important;
+  unicode-bidi:normal !important;
+  vertical-align:baseline !important;
+  visibility:inherit !important;
+  white-space:normal !important;
+  width:auto !important;
+  word-spacing:normal !important;
+  z-index:auto !important;
+
+  /* Proprietary and draft rules */
+    /* This section needs extending */
+  -moz-border-radius:0 !important;
+  -webkit-border-radius:0 !important;
+  -moz-box-sizing: content-box !important;
+  -webkit-box-sizing: content-box !important;
+  box-sizing: content-box !important;
+  text-shadow: none !important;
+}
+
+/* == BLOCK-LEVEL == */
+/* Actually, some of these should be inline-block and other values, but block works fine (TODO: rigorously verify this) */
+/* HTML 4.01 */
+.cleanslate, .cleanslate h3, .cleanslate h5, .cleanslate p, .cleanslate h1, .cleanslate dl, .cleanslate dt, .cleanslate h6, .cleanslate ol, .cleanslate form, .cleanslate select, .cleanslate option, .cleanslate pre, .cleanslate div, .cleanslate h2, .cleanslate caption, .cleanslate h4, .cleanslate ul, .cleanslate address, .cleanslate blockquote, .cleanslate dd, .cleanslate fieldset, .cleanslate hr,
+/* HTML5 new elements */
+.cleanslate article, .cleanslate aside, .cleanslate dialog, .cleanslate figure, .cleanslate footer, .cleanslate header, .cleanslate hgroup, .cleanslate menu, .cleanslate nav, .cleanslate section {
+    display:block !important;
+}
+
+.cleanslate textarea {
+  display:inline-block !important;
+}
+
+.cleanslate table {
+    display: table !important;
+}
+.cleanslate thead {
+    display: table-header-group !important;
+}
+.cleanslate tbody {
+    display: table-row-group !important;
+}
+.cleanslate tfoot {
+    display: table-footer-group !important;
+}
+.cleanslate tr {
+    display: table-row !important;
+}
+.cleanslate th, .cleanslate td {
+    display: table-cell !important;
+    vertical-align: middle !important;
+}
+.cleanslate td[valign=top] {
+    vertical-align: top !important
+}
+.cleanslate td[valign=bottom] {
+    vertical-align: bottom !important
+}
+/* == SPECIFIC ELEMENTS == */
+/* Some of these are browser defaults; some are just useful resets */
+
+.cleanslate nav ul, .cleanslate nav ol {
+  list-style-type:none !important;
+}
+.cleanslate ul, .cleanslate menu {
+  list-style-type:disc !important;
+}
+.cleanslate ol {
+  list-style-type:decimal !important;
+}
+.cleanslate ol ul, .cleanslate ul ul, .cleanslate menu ul, .cleanslate ol menu, .cleanslate ul menu, .cleanslate menu menu {
+  list-style-type:circle !important;
+}
+.cleanslate ol ol ul, .cleanslate ol ul ul, .cleanslate ol menu ul, .cleanslate ol ol menu, .cleanslate ol ul menu, .cleanslate ol menu menu, .cleanslate ul ol ul, .cleanslate ul ul ul, .cleanslate ul menu ul, .cleanslate ul ol menu, .cleanslate ul ul menu, .cleanslate ul menu menu, .cleanslate menu ol ul, .cleanslate menu ul ul, .cleanslate menu menu ul, .cleanslate menu ol menu, .cleanslate menu ul menu, .cleanslate menu menu menu {
+  list-style-type:square !important;
+}
+.cleanslate li {
+  display:list-item !important;
+  /* Fixes IE7 issue with positioning of nested bullets */
+  min-height:auto !important;
+  min-width:auto !important;
+}
+.cleanslate strong {
+  font-weight:bold !important;
+}
+.cleanslate em {
+  font-style:italic !important;
+}
+.cleanslate kbd, .cleanslate samp, .cleanslate code {
+  font-family:monospace !important;
+}
+.cleanslate a, .cleanslate a *, .cleanslate input[type=submit], .cleanslate input[type=radio], .cleanslate input[type=checkbox], .cleanslate select {
+  cursor:pointer !important;
+}
+.cleanslate a:hover {
+  text-decoration:underline !important;
+}
+.cleanslate button, .cleanslate input[type=submit] {
+  text-align: center !important;
+}
+.cleanslate input[type=hidden] {
+  display:none !important;
+}
+.cleanslate abbr[title], .cleanslate acronym[title], .cleanslate dfn[title] {
+  cursor:help !important;
+    border-bottom-width:1px !important;
+  border-bottom-style:dotted !important;
+}
+.cleanslate ins {
+  background-color:#ff9 !important;
+  color:black !important;
+}
+.cleanslate del {
+  text-decoration: line-through !important;
+}
+.cleanslate blockquote, .cleanslate q  {
+  quotes:none !important; /* HTML5 */
+}
+.cleanslate blockquote:before, .cleanslate blockquote:after, .cleanslate q:before, .cleanslate q:after, .cleanslate li:before, .cleanslate li:after  {
+  content:"" !important;
+}
+.cleanslate input, .cleanslate select {
+  vertical-align:middle !important;
+}
+.cleanslate select, .cleanslate textarea, .cleanslate input {
+  border:1px solid #ccc !important;
+}
+.cleanslate table {
+  border-collapse:collapse !important;
+  border-spacing:0 !important;
+}
+.cleanslate hr {
+  display:block !important;
+  height:1px !important;
+  border:0 !important;
+  border-top:1px solid #ccc !important;
+  margin:1em 0 !important;
+}
+.cleanslate *[dir=rtl] {
+  direction: rtl !important;
+}
+.cleanslate mark {
+  background-color:#ff9 !important;
+  color:black !important;
+  font-style:italic !important;
+  font-weight:bold !important;
+}
+
+
+
+/* == ROOT CONTAINER ELEMENT == */
+/* This contains default values for child elements to inherit  */
+.cleanslate {
+  font-size: medium !important;
+  line-height: 1 !important;
+  direction:ltr !important;
+  text-align:left !important;
+  font-family: "Times New Roman", Times, serif !important; /* Override this with whatever font-family is required */
+  color: black !important;
+  font-style:normal !important;
+  font-weight:normal !important;
+  text-decoration:none !important;
+  list-style-type:disc !important;
+}
+
+@font-face {
+  font-family: GDS-Logo;
+  src: local("HelveticaNeue"), local("Helvetica Neue"), local("Arial"), local("Helvetica"); }
+
+@-ms-viewport {
+  width: device-width; }
+
+@-o-viewport {
+  width: device-width; }
+
+/* The below comment needs a ! so that the copyright message doesn't get removed during the minification step. See: http://sass-lang.com/docs/yardoc/file.SASS_REFERENCE.html#comments */
+/*! Copyright (c) 2011 by Margaret Calvert & Henrik Kubel. All rights reserved. The font has been customised for exclusive use on GOV.UK. This cut is not commercially available. */
+@font-face {
+  font-family: 'nta';
+  src: url('./fonts/NTA-Light-20130221.woff') format('woff');
+  font-weight: normal;
+  font-style: normal; }
+
+@font-face {
+  font-family: 'nta';
+  src: url('./fonts/NTA-Bold-20130221.woff') format('woff');
+  font-weight: bold; }
+
+@font-face {
+  font-family: 'ntatabularnumbers';
+  src: url('./fonts/NTATabularNumbers-Light.woff') format('woff');
+  font-weight: normal;
+  font-style: normal; }
+
+@font-face {
+  font-family: 'ntatabularnumbers';
+  src: url('./fonts/NTATabularNumbers-Bold.woff') format('woff');
+  font-weight: bold; }
+
+html {
+  font-family: "nta", Arial, sans-serif;
+  font-size: 24px;
+  line-height: 1.25;
+  font-weight: 700;
+  text-transform: none;
+  height: 100%; }
+  @media (max-width: 640px) {
+    html {
+      font-size: 18px;
+      line-height: 1.2; } }
+
+.wrapper {
+  margin: 0 auto;
+  width: 80%; }
+
+.module-inner {
+  width: 100%;
+  height: 0;
+  padding-bottom: 40%;
+  position: relative; }
+
+.module {
+  clear: left;
+  padding-bottom: 50px;
+  border-bottom: 1px solid darkgray;
+  margin-bottom: 50px; }
+
+.module-kpi {
+  clear: none;
+  width: 30%;
+  float: left; }
+
+.module-kpi .module-inner {
+  padding: 0;
+  height: auto; }
+
+.module-inner > svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0; }
+
+body {
+  font-size: 16px; }
+
+.big-number {
+  font-size: 3rem;
+  font-weight: bold; }
+
+/**
+GRAPH
+*/
+.c3 svg {
+  font-size: 12px; }
+
+.c3-axis-y .domain {
+  stroke: none; }
+
+.c3-axis-x .domain {
+  stroke: #cccccc; }
+
+.c3-tooltip {
+  box-shadow: none; }
+
+.c3-tooltip th {
+  background-color: white;
+  border-bottom: 1px solid gray;
+  color: black; }
+
+.c3-line {
+  stroke-width: 2px; }
+
+.annotation-positive text {
+  fill: green; }
+
+.annotation-negative text {
+  fill: red; }
+
+.projected::before {
+  content: "Projected";
+  display: block; }
+
+
+/*-- Chart --*/
+.c3 svg {
+  font: 10px sans-serif; }
+
+.c3 path, .c3 line {
+  fill: none;
+  stroke: #000; }
+
+.c3 text {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none; }
+
+.c3-legend-item-tile, .c3-xgrid-focus, .c3-ygrid, .c3-event-rect, .c3-bars path {
+  shape-rendering: crispEdges; }
+
+.c3-chart-arc path {
+  stroke: #fff; }
+
+.c3-chart-arc text {
+  fill: #fff;
+  font-size: 13px; }
+
+/*-- Axis --*/
+/*-- Grid --*/
+.c3-grid line {
+  stroke: #aaa; }
+
+.c3-grid text {
+  fill: #aaa; }
+
+.c3-xgrid, .c3-ygrid {
+  stroke-dasharray: 3 3; }
+
+/*-- Text on Chart --*/
+.c3-text.c3-empty {
+  fill: #808080;
+  font-size: 2em; }
+
+/*-- Line --*/
+.c3-line {
+  stroke-width: 1px; }
+
+/*-- Point --*/
+.c3-circle._expanded_ {
+  stroke-width: 1px;
+  stroke: white; }
+
+.c3-selected-circle {
+  fill: white;
+  stroke-width: 2px; }
+
+/*-- Bar --*/
+.c3-bar {
+  stroke-width: 0; }
+
+.c3-bar._expanded_ {
+  fill-opacity: 0.75; }
+
+/*-- Focus --*/
+.c3-target.c3-focused {
+  opacity: 1; }
+
+.c3-target.c3-focused path.c3-line, .c3-target.c3-focused path.c3-step {
+  stroke-width: 2px; }
+
+.c3-target.c3-defocused {
+  opacity: 0.3 !important; }
+
+/*-- Region --*/
+.c3-region {
+  fill: steelblue;
+  fill-opacity: 0.1; }
+
+/*-- Brush --*/
+.c3-brush .extent {
+  fill-opacity: 0.1; }
+
+/*-- Select - Drag --*/
+/*-- Legend --*/
+.c3-legend-item {
+  font-size: 12px; }
+
+.c3-legend-item-hidden {
+  opacity: 0.15; }
+
+.c3-legend-background {
+  opacity: 0.75;
+  fill: white;
+  stroke: lightgray;
+  stroke-width: 1; }
+
+/*-- Tooltip --*/
+.c3-tooltip-container {
+  z-index: 10; }
+
+.c3-tooltip {
+  border-collapse: collapse;
+  border-spacing: 0;
+  background-color: #fff;
+  empty-cells: show;
+  -webkit-box-shadow: 7px 7px 12px -9px #777777;
+  -moz-box-shadow: 7px 7px 12px -9px #777777;
+  box-shadow: 7px 7px 12px -9px #777777;
+  opacity: 0.9; }
+
+.c3-tooltip tr {
+  border: 1px solid #CCC; }
+
+.c3-tooltip th {
+  background-color: #aaa;
+  font-size: 14px;
+  padding: 2px 5px;
+  text-align: left;
+  color: #FFF; }
+
+.c3-tooltip td {
+  font-size: 13px;
+  padding: 3px 6px;
+  background-color: #fff;
+  border-left: 1px dotted #999; }
+
+.c3-tooltip td > span {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  margin-right: 6px; }
+
+.c3-tooltip td.value {
+  text-align: right; }
+
+/*-- Area --*/
+.c3-area {
+  stroke-width: 0;
+  opacity: 0.2; }
+
+/*-- Arc --*/
+.c3-chart-arcs-title {
+  dominant-baseline: middle;
+  font-size: 1.3em; }
+
+.c3-chart-arcs .c3-chart-arcs-background {
+  fill: #e0e0e0;
+  stroke: none; }
+
+.c3-chart-arcs .c3-chart-arcs-gauge-unit {
+  fill: #000;
+  font-size: 16px; }
+
+.c3-chart-arcs .c3-chart-arcs-gauge-max {
+  fill: #777; }
+
+.c3-chart-arcs .c3-chart-arcs-gauge-min {
+  fill: #777; }
+
+.c3-chart-arc .c3-gauge-value {
+  fill: #000;
+  /*  font-size: 28px !important;*/ }
