@@ -5,7 +5,7 @@ var $ = require('jquery');
 var Module = require('performanceplatform-client.js').Module;
 var Table = require('performanceplatform-client.js').Table;
 
-var bundlePath = 'http://localhost:5000/performance/assets/js/client/c3/embed_bundle.js';
+var bundlePath = '{{host}}/embed.js';
 
 var scriptTags = document.getElementsByTagName('script');
 _.each(scriptTags, function (scriptTag) {
@@ -21,7 +21,7 @@ _.each(scriptTags, function (scriptTag) {
       var styleTag = document.createElement("link");
       styleTag.rel = "stylesheet";
       styleTag.type = "text/css";
-      styleTag.href =  "http://localhost:5000/performance/assets/css/bundle.css";
+      styleTag.href =  "{{host}}/performance/assets/css/bundle.css";
       styleTag.media = "all";
       document.getElementsByTagName('head')[0].appendChild(styleTag);
       styleTags.push(styleTag);

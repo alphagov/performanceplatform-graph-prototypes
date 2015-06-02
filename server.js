@@ -2,7 +2,10 @@ var express = require('express'),
   app = express(),
   data = require('./assets/js/server/data'),
   _ = require('lodash'),
-  hogan = require('hogan-express');
+  hogan = require('hogan-express'),
+  browserify = require('browserify'),
+  replaceStream = require('replacestream'),
+  fs = require('fs');
 
 app.use('/performance/assets', express.static('assets'));
 app.use('/performance/vendor', express.static('node_modules'));
@@ -32,6 +35,12 @@ function routeHandler (req, res) {
 }
 
 app.get('/performance/:slug', routeHandler);
+
+app.get('/embed.js', function (req, res) {
+  fs.createReadStream('./assets/js/client/c3/embed_bundle.js')
+    .pipe(replaceStream('{{host}}', req.protocol + '://' + req.headers.host))
+      .pipe(res);
+});
 
 app.listen(process.env.PORT || 5000);
 console.log('Server listening on port 5000');
