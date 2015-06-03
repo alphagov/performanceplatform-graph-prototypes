@@ -12,7 +12,7 @@
     "prewatch:css": "cp -r ./assets/sass/fonts ./assets/css/",
     "watch:css": "./node_modules/nodemon/bin/nodemon.js -e scss -x './node_modules/node-sass/bin/node-sass ./assets/sass/main.scss ./assets/css/main.css'",
     "watch:js": "./node_modules/nodemon/bin/nodemon.js -e js -x './node_modules/browserify/bin/cmd.js assets/js/client/c3/main.js -o assets/js/client/c3/bundle.js; ./node_modules/browserify/bin/cmd.js assets/js/client/nvd3/main.js -o assets/js/client/nvd3/bundle.js' --ignore 'bundle.js'",
-    "prestart": "./node_modules/browserify/bin/cmd.js assets/js/client/c3/embed.js | ./node_modules/uglify-js/bin/uglifyjs > assets/js/client/c3/embed_bundle.js; ./node_modules/browserify/bin/cmd.js assets/js/client/c3/main.js | ./node_modules/uglify-js/bin/uglifyjs > assets/js/client/c3/bundle.js",
+    "browserifyAndUglify": "./node_modules/browserify/bin/cmd.js assets/js/client/c3/embed.js | ./node_modules/uglify-js/bin/uglifyjs > assets/js/client/c3/embed_bundle.js; ./node_modules/browserify/bin/cmd.js assets/js/client/c3/main.js | ./node_modules/uglify-js/bin/uglifyjs > assets/js/client/c3/bundle.js",
     "start": "node server.js"
   },
   "engines": {
