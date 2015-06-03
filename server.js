@@ -37,6 +37,7 @@ function routeHandler (req, res) {
 app.get('/performance/:slug', routeHandler);
 
 app.get('/embed.js', function (req, res) {
+  console.log('req.headers.host', req.headers.referer);
   fs.createReadStream('./assets/js/client/c3/embed_bundle.js')
     .pipe(replaceStream('{{host}}', req.protocol + '://' + req.headers.host))
       .pipe(res);
