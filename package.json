@@ -37,7 +37,6 @@
     "uglify-js": "^2.4.23"
   },
   "devDependencies": {
-    "gulp": "^3.8.11",
     "performanceplatform-js-style-configs": "0.0.2"
   }
 }

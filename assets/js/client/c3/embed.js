@@ -3,6 +3,7 @@ var _ = require('lodash');
 var c3Transforms = require('./c3-transforms');
 var $ = require('jquery');
 var Module = require('performanceplatform-client.js').Module;
+var Dashboard = require('performanceplatform-client.js').Dashboard;
 var Table = require('performanceplatform-client.js').Table;
 
 var bundlePath = '{{host}}/embed.js';
@@ -27,34 +28,57 @@ _.each(scriptTags, function (scriptTag) {
       styleTags.push(styleTag);
     }
 
-    var moduleConfig = scriptTag.src.split('?module=')[1];
-    var config = global.PerformancePlatform.moduleConfig[moduleConfig];
-    var idConfig = moduleConfig.replace('/', '-');
+    var dashboardAndModuleName = scriptTag.src.split('?module=')[1];
 
-    if (!config.loaded) {
-      config.loaded = true;
-      var module = new Module(config);
+    if (dashboardAndModuleName.indexOf('&ref=') !== -1) {
+      dashboardAndModuleName = dashboardAndModuleName.split('&ref=')[0];
+    }
 
-      var $embedEl = $('<div class="' + idConfig + '-graph" class="cleanslate module"></div>');
+    var config = global.PerformancePlatform.moduleConfig[dashboardAndModuleName];
 
-      module.resolve().then(function (moduleData) {
-        moduleData.table = new Table(module, {formatDates: false});
-        $($embedEl).insertBefore('#' + moduleConfig.replace('/', '-'));
-
-        var graph = renderGraph(moduleData, $embedEl[0]);
-        graphSize($embedEl[0]);
-
-        //fix tick issues
-        $embedEl.find('.tick').each(function (index) {
-          if ($(this).find('text').is(':hidden')) {
-            $(this).find('line').hide();
-            $(this).find('text').css('width', 100);
-          }
-        });
+    if (!config) {
+      global.PerformancePlatform.moduleConfig[dashboardAndModuleName] = {
+        loaded: true
+      };
+      var dashboardName = dashboardAndModuleName.split('/')[0];
+      var moduleName = dashboardAndModuleName.split('/')[1];
+      var dashboard = new Dashboard(dashboardName);
+      dashboard.getConfig().then(function (dashboardConfig) {
+        var moduleConfig = _.where(dashboardConfig.modules, {'slug': moduleName})[0];
+        global.PerformancePlatform.moduleConfig[dashboardAndModuleName] = moduleConfig;
+        createModule(global.PerformancePlatform.moduleConfig[dashboardAndModuleName], dashboardAndModuleName);
       });
+    } else {
+      if (!config.loaded) {
+        createModule(config, dashboardAndModuleName);
+      }
     }
   }
 });
+
+function createModule(moduleConfig, dashboardAndModuleName) {
+  moduleConfig.loaded = true;
+  var idConfig = dashboardAndModuleName.replace('/', '-');
+  var module = new Module(moduleConfig);
+
+  var $embedEl = $('<div class="' + idConfig + '-graph" class="cleanslate module"></div>');
+
+  module.resolve().then(function (moduleData) {
+    moduleData.table = new Table(module, {formatDates: false});
+    $($embedEl).insertBefore('#' + idConfig);
+
+    var graph = renderGraph(moduleData, $embedEl[0]);
+    graphSize($embedEl[0]);
+
+    //fix tick issues
+    $embedEl.find('.tick').each(function (index) {
+      if ($(this).find('text').is(':hidden')) {
+        $(this).find('line').hide();
+        $(this).find('text').css('width', 100);
+      }
+    });
+  });
+}
 
 function renderGraph(module, el) {
   var graph;
