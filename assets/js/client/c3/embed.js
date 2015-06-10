@@ -52,7 +52,8 @@ _.each(scriptTags, function (scriptTag) {
       dashboard.getConfig().then(function (dashboardConfig) {
         var moduleConfig = _.where(dashboardConfig.modules, {'slug': moduleName})[0];
         global.PerformancePlatform.moduleConfig[dashboardAndModuleName] = moduleConfig;
-        createModule(global.PerformancePlatform.moduleConfig[dashboardAndModuleName], dashboardAndModuleName);
+        createModule(global.PerformancePlatform.moduleConfig[dashboardAndModuleName],
+          dashboardAndModuleName, dashboardConfig);
       });
     } else {
       if (!config.loaded) {
@@ -62,19 +63,26 @@ _.each(scriptTags, function (scriptTag) {
   }
 });
 
-function createModule(moduleConfig, dashboardAndModuleName) {
+function createModule(moduleConfig, dashboardAndModuleName, dashboardConfig) {
   moduleConfig.loaded = true;
   var idConfig = dashboardAndModuleName.replace('/', '-');
   var module = new Module(moduleConfig);
 
-  var $embedEl = $('<div class="' + idConfig + '-graph" class="cleanslate module"></div>');
+  var $embedEl = $('<div id="' + idConfig + '-container"></div>');
+
+  if (dashboardConfig) {
+    $embedEl.append('<h1>' + dashboardConfig.title + '</h1>');
+  }
+
+  $embedEl.append('<h2>' + moduleConfig.title + '</h2><div id="' + idConfig + '-graph"></div></div>');
 
   module.resolve().then(function (moduleData) {
     moduleData.table = new Table(module, {formatDates: false});
     $($embedEl).insertBefore('#' + idConfig);
 
-    var graph = renderGraph(moduleData, $embedEl[0]);
-    graphSize($embedEl[0]);
+    var graphId = $('#' + idConfig + '-graph')[0];
+    var graph = renderGraph(moduleData, graphId);
+    graphSize(graphId);
 
     //fix tick issues
     $embedEl.find('.tick').each(function (index) {
