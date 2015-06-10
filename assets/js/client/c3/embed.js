@@ -9,6 +9,12 @@ var Table = require('performanceplatform-client.js').Table;
 var bundlePath = '{{host}}/embed.js';
 
 var scriptTags = document.getElementsByTagName('script');
+
+if(!global.PerformancePlatform) {
+  global.PerformancePlatform = {};
+  global.PerformancePlatform.moduleConfig = [];
+}
+
 _.each(scriptTags, function (scriptTag) {
   if (scriptTag.src.indexOf(bundlePath) !== -1) {
     // add the style tag into the head (once only)
