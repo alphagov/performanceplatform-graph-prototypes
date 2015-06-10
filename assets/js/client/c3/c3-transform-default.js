@@ -24,7 +24,6 @@ module.exports = function (module) {
   // var titles = _.map(module.table.data, function (col) {
   //   return _.first(col);
   // });
-  console.log(titles);
 
   config = {
     data: {

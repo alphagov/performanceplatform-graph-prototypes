@@ -18,8 +18,8 @@ if(!global.PerformancePlatform) {
 _.each(scriptTags, function (scriptTag) {
   if (scriptTag.src.indexOf(bundlePath) !== -1) {
     // add the style tag into the head (once only)
-    if(!PerformancePlatform.styleTags) {
-      PerformancePlatform.styleTags = [];
+    if(!global.PerformancePlatform.styleTags) {
+      global.PerformancePlatform.styleTags = [];
     }
     var styleTags = PerformancePlatform.styleTags;
 
