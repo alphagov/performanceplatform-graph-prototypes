@@ -21,16 +21,15 @@ function calculateAverage (arr) {
 module.exports = function (module) {
   var config;
 
-  var titles = _.map(module.table.data, function (col) {
-    return _.first(col);
-  });
-  console.log(titles);
+  // var titles = _.map(module.table.data, function (col) {
+  //   return _.first(col);
+  // });
 
   config = {
     data: {
       x: module.axes.x.label,
-      columns: module.table.data,
-      groups : [titles]
+      columns: module.table.data
+      // groups : [titles]
     },
     axis: {
       x: {
